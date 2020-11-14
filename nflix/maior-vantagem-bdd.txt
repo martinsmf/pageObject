@@ -1,0 +1,1 @@
+A maior vantagem do BDD é unificar td em um unico lugar, massa de teste, plano de teste e especificação funcional
