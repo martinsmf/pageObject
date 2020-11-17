@@ -15,11 +15,30 @@ When('eu faço o cadastro desse filme') do
 end
   
 Then('devo ver o novo filme na lista') do
-    result = @movie_page.movie_tr(@movie)
+    result = @movie_page.movie_tr(@movie["title"])
     expect(result).to have_text @movie['title']
     expect(result).to have_text @movie['status']
 end
 
 Then('devo ver a notificação {string}') do |expect_alert|
   expect(@movie_page.alert).to eql expect_alert
+end
+
+Given('que {string} está no catálogo') do |movie_code|
+  steps %{
+    Given que "#{movie_code}" é um novo filme
+    And este filme já existe no catálogo
+  }
+end
+
+When('eu removo este item') do
+  @movie_page.remove(@movie["title"])
+end
+
+When('eu confirmo a solicitação') do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then('este item deve ser removido do catálogo') do
+  pending # Write code here that turns the phrase above into concrete actions
 end
