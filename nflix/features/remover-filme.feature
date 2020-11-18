@@ -8,7 +8,7 @@ Feature: Remover Filme
         
         Scenario: Confirmar exclusão
             Given que "dbz" está no catálogo
-             When eu removo este item
+             When eu solicito a exclusão
               And eu confirmo a solicitação
              Then este item deve ser removido do catálogo
         @rm_movie
