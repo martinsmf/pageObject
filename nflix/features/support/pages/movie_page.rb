@@ -59,4 +59,19 @@ class MoviePage
         movie_tr(title).find(".btn-trash").click
     end
 
+    def swal2_confirm
+        find('.swal2-confirm').click
+    end
+
+    def swal12_cancel
+        find('.swal2-cancel').click
+    end
+
+    def has_no_movie(title)
+        page.has_no_css?('table tboby tr', text: title)
+    end
+
+    def has_movie(title)
+        page.has_css?('table tbody tr', text: title)
+    end
 end

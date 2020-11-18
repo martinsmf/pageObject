@@ -36,9 +36,21 @@ When('eu removo este item') do
 end
 
 When('eu confirmo a solicitação') do
-  pending # Write code here that turns the phrase above into concrete actions
+  @movie_page.swal2_confirm
 end
 
 Then('este item deve ser removido do catálogo') do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@movie_page.has_no_movie(@movie['title'])).to be true
+end
+
+When('eu solicito a exclusão') do
+  @movie_page.remove(@movie['title'])
+end
+
+When('cancelo a solicitação') do
+  @movie_page.swal12_cancel
+end
+
+Then('este item deve permanecer no catálogo') do
+  expect(@movie_page.has_movie(@movie['title'])).to be true
 end
