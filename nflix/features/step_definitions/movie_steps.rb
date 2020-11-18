@@ -33,12 +33,10 @@ end
 
 When('eu solicito a exclusão') do
   @movie_page.remove(@movie['title'])
-  sleep 3
 end
 
 When('eu confirmo a solicitação') do
   @movie_page.swal2_confirm
-  sleep 3
 end
 
 Then('este item deve ser removido do catálogo') do
@@ -47,7 +45,6 @@ end
 
 When('cancelo a solicitação') do
   @movie_page.swal12_cancel
-  sleep 3
 end
 
 Then('este item deve permanecer no catálogo') do
