@@ -11,6 +11,7 @@ Before do
 end
 
 Before("@login") do
+    user = CONFIG['users']['cat_manager']
     @login_page.go
-    @login_page.logar_com('tony@stark.com', 'pwd123')
+    @login_page.logar_com(user['email'], user['pass'])
 end

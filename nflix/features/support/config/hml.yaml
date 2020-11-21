@@ -1,0 +1,11 @@
+---
+url: 'http://hmg.nflix.com'
+database:
+  host: "caminho do banco"
+  dbname: "ninjaflix"
+  user: "postgres"
+  password: "qaninja"
+users:
+  cat_manager: 
+    email: "matheus.martins@startk.com"
+    pass: "pwd123"

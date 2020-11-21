@@ -8,9 +8,22 @@ require_relative 'helpers'
 # informa que todos os metodos do modulo Helpres são nativo dentro da execução do cucumber
 World(Helpers)
 
+# Variavel para carregar variaeis de ambiente
+CONFIG = YAML.load_file(File.join(Dir.pwd, "features/support/config/#{ENV["ENV_TYPE"]}.yaml"))
+
+case ENV['BROWSER']
+when 'chrome'
+    @driver = :selenium_chrome
+when 'headless'
+    @driver = :selenium_chrome_headless
+when 'firefox'
+    @driver = :selenium
+else
+    puts 'Invalid Browser'
+end
+
 Capybara.configure do |config|
-    config.default_driver = :selenium_chrome
-    config.app_host = 'http://192.168.99.100:8080' # docker toolbox no windows
-    #cinfig.app_host = 'http:/localhost:8080' # doker no mac ou linux
+    config.default_driver = @driver
+    config.app_host = CONFIG['url']
     config.default_max_wait_time = 15
 end
