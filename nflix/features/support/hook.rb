@@ -15,3 +15,14 @@ Before("@login") do
     @login_page.go
     @login_page.logar_com(user['email'], user['pass'])
 end
+
+# if quando desejar que gere a evidencia apenas quando o cenario falhar. 
+After  do #|scenario|
+    # if scenario.failed?
+        temp_shot = page.save_screenshot('log/temp_shot.png')
+        # converte o print em binário 
+        screenshot = Base64.encode64(File.open(temp_shot, "rb").read)
+        # anexa o print no relatório
+        embed(screenshot, 'image/png', 'Screenshot')
+    # end
+end
