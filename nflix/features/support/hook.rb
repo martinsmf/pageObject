@@ -1,3 +1,6 @@
+require 'report_builder'
+require 'date'
+
 Before do 
     @login_page = LoginPage.new
     @movie_page = MoviePage.new
@@ -26,3 +29,18 @@ After  do #|scenario|
         embed(screenshot, 'image/png', 'Screenshot')
     # end
 end
+# pega a data e hora atual
+date = DateTime.now
+@current_date = date.to_s.tr(':', '-') 
+at_exit do
+    ReportBuilder.configure do |config|
+        config.input_path = 'log/report.json'
+        config.report_path = 'log/report' + @current_date
+        config.report_types = [:html]
+        config.compress_imag = true
+        config.report_title = 'Ninjaflix - webApp'
+        config.additional_info = {'App' => 'Web', 'Data de execução' => @current_date}
+        config.color = 'indigo'
+    end
+    ReportBuilder.build_report
+end 
